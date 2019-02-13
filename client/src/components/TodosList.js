@@ -9,3 +9,5 @@ class TodosList extends Component {
     )
   }
 }
+
+export default TodosList;
