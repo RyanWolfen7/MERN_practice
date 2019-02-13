@@ -11,6 +11,11 @@ class CreateTodo extends Component {
       todo_priority: '',
       todo_completed: false
     }
+    // binds the stat so we can borrow it for other methods
+    this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
+    this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind(this);
+    this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onchangeDescription(state){
@@ -31,7 +36,7 @@ class CreateTodo extends Component {
    }
 
    onSubmit(state) {
-     // Because not hooked up to a backend Remove after backend complete 
+     // Because not hooked up to a backend Remove after backend complete
         state.preventDefault();
 
         console.log(`Form submitted:`);
