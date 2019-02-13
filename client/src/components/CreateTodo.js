@@ -31,6 +31,7 @@ class CreateTodo extends Component {
    }
 
    onSubmit(state) {
+     // Because not hooked up to a backend Remove after backend complete 
         state.preventDefault();
 
         console.log(`Form submitted:`);
