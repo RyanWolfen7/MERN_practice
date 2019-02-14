@@ -69,7 +69,7 @@ class EditTodo extends Component {
         };
         console.log(obj);
 
-        if(this.state.todo_completed == true) {
+        if(this.state.todo_completed === true) {
           axios.delete('http://localhost:8000/todos/'+this.props.match.params.id)
             .then(res => console.log(res.data));
         } else {
