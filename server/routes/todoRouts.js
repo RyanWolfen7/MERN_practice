@@ -3,6 +3,15 @@ var ObjectID = require('mongodb').ObjectID;
 module.exports = function(app, db) {
 
   // get todo list
+  app.get('/todos', (req, res) => {
+    db.collection('todos').find().toArray(function(err, result) {
+      if (err) {
+        res.send({ 'error' : 'An error has occurred'});
+      } else {
+        res.send(result);
+      }
+    });
+  });
 
   //create todo
   app.post('/todos', (req, res) => {
