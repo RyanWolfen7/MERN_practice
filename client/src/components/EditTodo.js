@@ -69,11 +69,16 @@ class EditTodo extends Component {
         };
         console.log(obj);
 
-        const config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
-        const qs = require('qs');
-
-        axios.put('http://localhost:8000/todos/'+this.props.match.params.id, qs.stringify(obj), config)
+        if(this.state.todo_completed == true) {
+          axios.delete('http://localhost:8000/todos/'+this.props.match.params.id)
             .then(res => console.log(res.data));
+        } else {
+          const config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
+          const qs = require('qs');
+
+          axios.put('http://localhost:8000/todos/'+this.props.match.params.id, qs.stringify(obj), config)
+              .then(res => console.log(res.data));
+        }
 
         this.props.history.push('/');
     }
