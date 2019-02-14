@@ -21,7 +21,7 @@ class EditTodo extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8000/todos/'+this.props.match.params.id)
+        axios.get('http://localhost:8000/todos'+this.props.match.params.id)
             .then(response => {
                 this.setState({
                     todo_description: response.data.todo_description,
@@ -68,7 +68,11 @@ class EditTodo extends Component {
             todo_completed: this.state.todo_completed
         };
         console.log(obj);
-        axios.post('http://localhost:4000/todos/update/'+this.props.match.params.id, obj)
+
+        const config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
+        const qs = require('qs');
+
+        axios.put('http://localhost:8000/todos/'+this.props.match.params.id, qs.stringify(obj), config)
             .then(res => console.log(res.data));
 
         this.props.history.push('/');
