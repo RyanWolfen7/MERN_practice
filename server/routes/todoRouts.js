@@ -13,6 +13,18 @@ module.exports = function(app, db) {
     });
   });
 
+  app.get('/todos/:id', (req, res) => {
+    const id = req.params.id;
+    const details = { '_id' : new ObjectID(id) };
+    db.collection('todos').findOne(details, (err, item) => {
+      if (err) {
+        res.send({'error': "can't find that one"});
+      } else {
+        res.send(item);
+      }
+    });
+  });
+
   //create todo
   app.post('/todos', (req, res) => {
     const todo = {
